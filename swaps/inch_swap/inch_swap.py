@@ -45,8 +45,7 @@ class InchSwap:
         spender = response['address']
         from_token_address, from_decimals, to_token_address = await setup_transaction_data(self.web3,
                                                                                            self.from_token_address,
-                                                                                           self.to_token_address,
-                                                                                           self.chain)
+                                                                                           self.to_token_address)
         amount = int(self.amount_to_swap * 10 ** from_decimals)
 
         if from_token_address != '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE':
