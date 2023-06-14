@@ -31,11 +31,7 @@ class InchSwap:
         self.slippage = slippage
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
-        self.nonce = self.web3.eth.get_transaction_count(self.address_wallet)
-        if self.chain == 'era':
-            self.divider = 1
-        else:
-            self.divider = 1
+        self.nonce = self.web3.eth.get_transaction_count(self.address_wallet)     
 
     async def send_requests(self, url: str) -> json:
         async with ClientSession() as session:
@@ -68,7 +64,7 @@ class InchSwap:
         tx['nonce'] = self.nonce
         tx['to'] = Web3.to_checksum_address(tx['to'])
         tx['gasPrice'] = int(tx['gasPrice'])
-        tx['gas'] = int(int(tx['gas']) / self.divider)
+        tx['gas'] = int(int(tx['gas']))
         tx['value'] = int(tx['value'])
 
         signed_tx = self.web3.eth.account.sign_transaction(tx, self.private_key)
