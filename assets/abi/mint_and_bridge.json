@@ -1,0 +1,32 @@
+[
+  {
+    "inputs": [],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "_dstChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_destination",
+        "type": "bytes"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "crossChain",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]
