@@ -39,7 +39,7 @@ class InchSwap:
 
     async def send_requests(self, url: str) -> json:
         async with ClientSession() as session:
-            response = await session.get(url, proxy='http://Telegram:Proxysoxybot@45.15.72.83:5500')
+            response = await session.get(url)
             response_text = await response.json()
         return response_text
 
