@@ -55,7 +55,7 @@ class InchSwapConfig:
     amount_from = 0.1
     amount_to = 0.2
     slippage = 3
-    from_token_address = ''
+    from_token_address = '' # Пусто, если ETH
     to_token_address = ''
 
 
