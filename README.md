@@ -1,3 +1,3 @@
 # zksync
 
-Chains: matic/eth/op/bsc/arb/era
+https://teletype.in/@roflaccount/nftscripts-1
