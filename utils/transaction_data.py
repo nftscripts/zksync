@@ -85,8 +85,13 @@ async def approve_token(amount: float, private_key: str, chain: str, from_token_
 
             signed_tx = web3.eth.account.sign_transaction(tx, private_key=private_key)
             raw_tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            tx_receipt = web3.eth.wait_for_transaction_receipt(raw_tx_hash)
+            while tx_receipt in None:
+                await asyncio.sleep(1)
+                tx_receipt = web3.eth.get_transaction_receipt(raw_tx_hash)
             tx_hash = web3.to_hex(raw_tx_hash)
             logger.info(f'Token approved | Tx hash: {tx_hash}')
+            await asyncio.sleep(5)
             return tx_hash
 
     except Exception as ex:
