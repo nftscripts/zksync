@@ -35,7 +35,7 @@ class Orbiter:
         self.token = token
         self.from_chain = from_chain
         self.to_chain = to_chain
-        self.amount = random.uniform(amount_from, amount_to)
+        self.amount = round(random.uniform(amount_from, amount_to), 7)
         self.code = code
         self.web3 = Web3(Web3.HTTPProvider(rpc_chain))
         self.account = self.web3.eth.account.from_key(private_key)
