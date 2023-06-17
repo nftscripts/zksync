@@ -49,6 +49,11 @@ class BungeeBridge:
             amount = self.amount_to_bridge
         value = await int_to_decimal(amount, 18)
 
+        balance = await check_balance(self.web3, self.private_key)
+        if self.amount_to_bridge > balance:
+            logger.error(f'Not enough balance for wallet {self.address_wallet}')
+            return
+
         limits = await get_bungee_limits(self.from_chain, self.to_chain)
         min_limit = await round_to(await decimal_to_int(limits[0], 18))
         max_limit = await round_to(await decimal_to_int(limits[1], 18))
@@ -58,6 +63,7 @@ class BungeeBridge:
         else:
             logger.error(
                 f'Amount to bridge ({self.amount_to_bridge}) is out of limits | MIN: {min_limit} MAX: {max_limit}')
+            return
 
         contract = self.web3.eth.contract(
             address=Web3.to_checksum_address(BUNGEE_REFUEL_CONTRACTS[self.from_chain.lower()]),
