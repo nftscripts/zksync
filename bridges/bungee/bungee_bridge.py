@@ -76,7 +76,7 @@ class BungeeBridge:
                 build_transaction({
                 'from': self.address_wallet,
                 'nonce': self.web3.eth.get_transaction_count(self.address_wallet),
-                'value': self.web3.to_wei(self.amount_to_bridge, 'ether'),
+                'value': value,
                 'maxFeePerGas': 0,
                 'maxPriorityFeePerGas': 0,
                 'gas': 0
@@ -93,7 +93,7 @@ class BungeeBridge:
                 build_transaction({
                 'from': self.address_wallet,
                 'nonce': self.web3.eth.get_transaction_count(self.address_wallet),
-                'value': self.web3.to_wei(self.amount_to_bridge, 'ether'),
+                'value': value,
                 'gasPrice': self.web3.eth.gas_price,
                 'gas': 0
             })
