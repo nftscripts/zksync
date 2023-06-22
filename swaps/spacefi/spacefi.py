@@ -103,11 +103,11 @@ class SpaceFiSwap:
             gasLimit = self.web3.eth.estimate_gas(tx)
             tx.update({'gas': gasLimit})
 
-            signed_tx = self.web3.eth.account.sign_transaction(tx, self.private_key)
-            raw_tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-            tx_hash = self.web3.to_hex(raw_tx_hash)
-            logger.success(
-                f'Swapped {self.amount_to_swap} {self.from_token} tokens => {self.to_token} | TX: https://explorer.zksync.io/tx/{tx_hash}')
+        signed_tx = self.web3.eth.account.sign_transaction(tx, self.private_key)
+        raw_tx_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        tx_hash = self.web3.to_hex(raw_tx_hash)
+        logger.success(
+            f'Swapped {self.amount_to_swap} {self.from_token} tokens => {self.to_token} | TX: https://explorer.zksync.io/tx/{tx_hash}')
 
 
 class SpaceFiLiquidity:
