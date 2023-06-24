@@ -127,14 +127,14 @@ class MuteLiq:
             raise Exception(f'Not enough balance for wallet {self.address_wallet}')
 
         deadline = int(self.web3.eth.get_block('latest').timestamp) + 1200
-        if self.token.lower() != 'eth':
-            await approve_token(amount=value,
-                                private_key=self.private_key,
-                                chain='ERA',
-                                from_token_address=from_token_address,
-                                spender='0x8B791913eB07C32779a16750e3868aA8495F5964',
-                                address_wallet=self.address_wallet,
-                                web3=self.web3)
+        
+        await approve_token(amount=value,
+                            private_key=self.private_key,
+                            chain='ERA',
+                            from_token_address='0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4',
+                            spender='0x8B791913eB07C32779a16750e3868aA8495F5964',
+                            address_wallet=self.address_wallet,
+                            web3=self.web3)
 
         tx = mute_contract.functions.addLiquidityETH(
             Web3.to_checksum_address('0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4'),
