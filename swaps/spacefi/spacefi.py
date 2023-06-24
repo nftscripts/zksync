@@ -139,14 +139,13 @@ class SpaceFiLiquidity:
         contract = self.web3.eth.contract(address=Web3.to_checksum_address(self.swap_router_address),
                                           abi=await load_abi('spacefi_swap_router'))
 
-        if self.token.lower() != 'eth':
-            await approve_token(amount=value,
-                                private_key=self.private_key,
-                                chain='ERA',
-                                from_token_address=from_token_address,
-                                spender=self.swap_router_address,
-                                address_wallet=self.address_wallet,
-                                web3=self.web3)
+        await approve_token(amount=value,
+                            private_key=self.private_key,
+                            chain='ERA',
+                            from_token_address='0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4',
+                            spender=self.swap_router_address,
+                            address_wallet=self.address_wallet,
+                            web3=self.web3)
 
         deadline = int(self.web3.eth.get_block('latest').timestamp) + 1200
 
