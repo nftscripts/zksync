@@ -1,3 +1,4 @@
+from utils.chains import ERA
 from loguru import logger
 from web3 import Web3
 import random
@@ -28,7 +29,7 @@ class SpaceFiSwap:
         self.to_token = to_token
         self.amount_to_swap = random.uniform(amount_from, amount_to)
         self.swap_router_address = '0xbE7D1FD1f6748bbDefC4fbaCafBb11C6Fc506d1d'
-        self.web3 = Web3(Web3.HTTPProvider('https://mainnet.era.zksync.io'))
+        self.web3 = Web3(Web3.HTTPProvider(ERA.rpc))
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
         self.nonce = self.web3.eth.get_transaction_count(self.address_wallet)
@@ -121,7 +122,7 @@ class SpaceFiLiquidity:
         self.token = token
         self.amount = random.uniform(amount_from, amount_to)
         self.swap_router_address = '0xbE7D1FD1f6748bbDefC4fbaCafBb11C6Fc506d1d'
-        self.web3 = Web3(Web3.HTTPProvider('https://mainnet.era.zksync.io'))
+        self.web3 = Web3(Web3.HTTPProvider(ERA.rpc))
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
 
