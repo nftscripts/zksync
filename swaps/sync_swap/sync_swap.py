@@ -1,3 +1,4 @@
+from utils.chains import ERA
 from eth_abi import encode
 from loguru import logger
 from web3 import Web3
@@ -25,7 +26,7 @@ class SyncSwapSwap:
         self.amount_to_swap = random.uniform(amount_from, amount_to)
         self.classic_pool_factory_address = '0xf2DAd89f2788a8CD54625C60b55cD3d2D0ACa7Cb'
         self.router_address = '0x2da10A1e27bF85cEdD8FFb1AbBe97e53391C0295'
-        self.web3 = Web3(Web3.HTTPProvider('https://mainnet.era.zksync.io'))
+        self.web3 = Web3(Web3.HTTPProvider(ERA.rpc))
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
 
@@ -120,7 +121,7 @@ class SyncSwapLiq:
         self.amount = random.uniform(amount_from, amount_to)
         self.classic_pool_factory_address = '0xf2DAd89f2788a8CD54625C60b55cD3d2D0ACa7Cb'
         self.router_address = '0x2da10A1e27bF85cEdD8FFb1AbBe97e53391C0295'
-        self.web3 = Web3(Web3.HTTPProvider('https://mainnet.era.zksync.io'))
+        self.web3 = Web3(Web3.HTTPProvider(ERA.rpc))
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
 
