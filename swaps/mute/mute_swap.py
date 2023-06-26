@@ -1,5 +1,6 @@
 from swaps.utils.transaction_data import setup_tokens_addresses
 from swaps.utils.transaction_data import setup_for_liq
+from utils.chains import ERA
 from loguru import logger
 from web3 import Web3
 import random
@@ -23,7 +24,7 @@ class MuteSwap:
         self.from_token = from_token
         self.to_token = to_token
         self.amount_to_swap = random.uniform(amount_from, amount_to)
-        self.web3 = Web3(Web3.HTTPProvider('https://mainnet.era.zksync.io'))
+        self.web3 = Web3(Web3.HTTPProvider(ERA.rpc))
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
 
@@ -108,7 +109,7 @@ class MuteLiq:
         self.private_key = private_key
         self.token = token
         self.amount = random.uniform(amount_from, amount_to)
-        self.web3 = Web3(Web3.HTTPProvider('https://mainnet.era.zksync.io'))
+        self.web3 = Web3(Web3.HTTPProvider(ERA.rpc))
         self.account = self.web3.eth.account.from_key(private_key)
         self.address_wallet = self.account.address
 
