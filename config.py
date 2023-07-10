@@ -28,8 +28,9 @@ class BungeeBridgeConfig:
 
 
 class MainBridgeConfig:
-    amount_from = 0.005
-    amount_to = 0.005
+    amount_from = 0.01
+    amount_to = 0.01
+    action_type = 'deposit'  # deposit/withdraw
 
 
 class OrbiterBridgeConfig:
