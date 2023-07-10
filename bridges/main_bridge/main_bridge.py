@@ -9,7 +9,7 @@ from loguru import logger
 from web3 import Web3
 import random
 
-from src.utils.chains import (
+from utils.chains import (
     ETH,
     ERA,
 )
