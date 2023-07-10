@@ -1,4 +1,7 @@
-web3~=6.4.0
+web3==6.5.0
 loguru~=0.7.0
 tqdm~=4.65.0
 colorama~=0.4.6
+hexbytes~=0.3.1
+aiohttp~=3.8.4
+zksync2~=0.5.0
