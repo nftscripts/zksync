@@ -56,7 +56,7 @@ class Orbiter:
         if amount > balance:
             raise Exception(f'Not enough balance for wallet {self.address_wallet}')
 
-        amount = int(Fraction(amount) + self.code)
+        amount = int(str(Fraction(amount))[:-4] + str(self.code))
 
         if self.from_chain.lower() in chain_with_native_eth:
             if self.token.lower() == 'eth':
