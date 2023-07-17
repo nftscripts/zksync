@@ -204,6 +204,15 @@ async def process_main_bridge(private_key: str, pbar: tqdm) -> None:
     pbar.update()
 
 
+async def process_nft_domain_service(private_key: str, pbar: tqdm) -> None:
+    nft_domain_service = MintName(private_key=private_key)
+
+    logger.info('Minting NFT name...')
+    await nft_domain_service.mint_name()
+
+    pbar.update()
+
+
 async def process_nft_mint_and_bridge(private_key: str, pbar: tqdm) -> None:
     bridge_to = MintAndBridge.bridge_to
     nft_domain_service = MintBridge(private_key=private_key,
