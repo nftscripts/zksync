@@ -29,11 +29,25 @@ class MainBridge:
 
     async def deposit(self) -> None:
         eth_provider = EthereumProvider(self.zk_web3, self.eth_web3, self.account)
-        l1_tx_receipt = eth_provider.deposit(token=Token.create_eth(),
-                                             amount=Web3.to_wei(self.amount, 'ether'),
-                                             gas_price=self.eth_web3.eth.gas_price)
+        gas_limit = 700_000
+        gas_price = self.eth_web3.eth.gas_price
+        operator_tip = eth_provider.get_base_cost(l2_gas_limit=gas_limit, gas_per_pubdata_byte=800,
+                                                  gas_price=gas_price)
+        l1_tx_receipt = None
+        try:
+            l1_tx_receipt = eth_provider.deposit(token=Token.create_eth(),
+                                                 amount=Web3.to_wei(self.amount, 'ether'),
+                                                 l2_gas_limit=gas_limit,
+                                                 gas_price=gas_price,
+                                                 gas_limit=gas_limit,
+                                                 gas_per_pubdata_byte=800,
+                                                 operator_tip=operator_tip)
+        except ValueError as ex:
+            if 'insufficient funds' in str(ex):
+                logger.error(f'Insufficient funds for gas * price + value for wallet {self.address_wallet}')
+                return
 
-        if not l1_tx_receipt["status"]:
+        if l1_tx_receipt is None or not l1_tx_receipt["status"]:
             logger.error("Deposit transaction on L1 network failed")
             return
 
