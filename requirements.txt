@@ -1,4 +1,4 @@
-web3==6.7.0
+web3==6.0.0
 loguru~=0.7.0
 tqdm~=4.65.0
 colorama~=0.4.6
